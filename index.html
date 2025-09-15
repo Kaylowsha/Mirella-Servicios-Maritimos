@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mirella Servicios Marítimos | Patagonia Natural</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios marítimos integrales en Punta Arenas y la Patagonia: amarres, logística, suministros, proyectos submarinos y transporte sustentable.">
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* ===== PALETA PATAGONIA NATURAL ===== */
+        :root {
+            --glacier: #8FBFDA;   /* hielo patagónico */
+            --forest: #798665;    /* bosque de lenga */
+            --earth: #A84600;     /* tierra volcánica */
+            --slate: #22303F;     /* pizarra de montaña */
+            --cream: #E7E8E7;     /* luz austral */
+            --white: #FFFFFF;
+            --accent: #2C6485;    /* azul profundo glaciar */
+            --cta: #FF8C00;       /* coral patagónico */
+        }
+
+        /* ===== MODO OSCURO ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-dark: #0D1117;
+                --card-dark: #161B22;
+                --text-dark: #C9D1D9;
+                --accent-dark: #58A6FF;
+                --cta-dark: #F78166;
+            }
+            body.dark { background: var(--bg-dark); color: var(--text-dark); }
+            body.dark header { background: var(--card-dark); }
+            body.dark .card { background: var(--card-dark); }
+            body.dark .section:nth-child(even) { background: var(--bg-dark); }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--slate); transition: background .3s, color .3s; }
+
+        h1, h2, h3 { font-weight: 700; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+        /* ===== LANG SWITCH ===== */
+        .lang-switch { position: absolute; top: 1rem; right: 1rem; display: flex; gap: .5rem; z-index: 100; }
+        .lang-switch button {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: .4rem .8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: .9rem;
+            transition: background .3s;
+        }
+        .lang-switch button:hover { background: var(--cta); }
+
+        /* ===== HEADER ===== */
+        header { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: 0 4px 12px rgba(0,0,0,.08); z-index: 999; }
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+        .logo { font-size: 1.3rem; font-weight: 700; color: var(--slate); display: flex; align-items: center; gap: .5rem; }
+        .logo svg { width: 28px; height: 28px; fill: var(--accent); }
+        .nav-menu { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-menu a { font-weight: 600; color: var(--slate); position: relative; }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width .3s;
+        }
+        .nav-menu a:hover::after { width: 100%; }
+
+        .cta-btn {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, var(--cta), #ffa84d);
+            color: var(--white);
+            padding: .6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255,140,0,.4);
+            transition: all .3s;
+        }
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+            transition: left .6s;
+        }
+        .cta-btn:hover::before { left: 150%; }
+        .cta-btn:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 6px 20px rgba(255,140,0,.5);
+        }
+
+        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+        .hamburger span { width: 24px; height: 3px; background: var(--slate); }
+
+        /* ===== HERO PATAGONIA + PARALLAX ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url("https://images.unsplash.com/photo-1509474525821-6883c149b798?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80") center/cover fixed no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--slate) 0%, var(--accent) 100%);
+            opacity: .7;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ===== ONDA ANIMADA ===== */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+            animation: wave 10s linear infinite;
+        }
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== SECCIONES ===== */
+        .section { padding: 5rem 0; position: relative; }
+        .section:nth-child(even) { background: var(--cream); }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--slate);
+            font-size: 2rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: .5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,.08);
+            text-align: center;
+            transition: transform .3s, box-shadow .3s;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,.15);
+        }
+        .card h3 { margin: .8rem 0 .5rem; color: var(--slate); }
+
+        .stats { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+        .stat { text-align: center; }
+        .stat strong { display: block; font-size: 2.2rem; color: var(--accent); }
+
+        /* ===== TOUR 360° ===== */
+        .tour-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 escritorio */
+            background: var(--cream) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M21 12c0 1.3-.5 2.5-1.4 3.4-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4L12 14.8l-2.6 2.6c-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4C1.5 16.5 1 15.3 1 14s.5-2.5 1.4-3.4l7.6-7.6c.9-.9 2.1-1.4 3.4-1.4s2.5.5 3.4 1.4l7.6 7.6c.9.9 1.4 2.1 1.4 3.4z"/></svg>') no-repeat center;
+            background-size: 48px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .tour-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .tour-wrapper { padding-bottom: 75%; background-size: 40px; }
+        }
+
+        /* ===== FORM ===== */
+        form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
+        input, select, textarea {
+            padding: .8rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font: inherit;
+            transition: border-color .3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+        form button {
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--slate);
+            color: var(--cream);
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        .footer-content {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            margin-bottom: 2rem;
+        }
+        footer h4 { margin-bottom: .8rem; color: var(--accent); }
+        footer ul { list-style: none; }
+        footer a:hover { color: var(--accent); }
+        .footer-bottom {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,.15);
+            font-size: .85rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                width: 100%;
+                background: var(--white);
+                padding: 1rem 0;
+                transition: .3s;
+            }
+            .nav-menu.active { left: 0; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- IDIOMA + OSCURO -->
+    <div class="lang-switch">
+        <button onclick="setLang('es')">ES</button>
+        <button onclick="setLang('en')">EN</button>
+        <button id="themeToggle">🌗</button>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <svg viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-2 16l-2-3v-4l2 2v2h4v-2l2-2v4l-2 3h-4zm6-10l-2-2h-4l-2 2v2h8v-2z"/></svg>
+                <span data-es="Mirella Servicios Marítimos" data-en="Mirella Maritime Services">Mirella Servicios Marítimos</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li><a href="#about" data-es="Nosotros" data-en="About">Nosotros</a></li>
+                <li><a href="#services" data-es="Servicios" data-en="Services">Servicios</a></li>
+                <li><a href="#tour360" data-en="360 Tour">Tour 360°</a></li>
+                <li><a href="#fleet" data-es="Flota" data-en="Fleet">Flota</a></li>
+                <li><a href="#locations" data-es="Ubicaciones" data-en="Locations">Ubicaciones</a></li>
+                <li><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></li>
+            </ul>
+            <a href="#quote" class="cta-btn" data-es="Cotización" data-en="Quote">Cotización</a>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content container" data-aos="fade-up">
+            <h1 data-es="Soluciones Marítimas en la Patagonia" data-en="Maritime Solutions in Patagonia">Soluciones Marítimas en la Patagonia</h1>
+            <p data-es="Más de 15 años conectando Punta Arenas con seguridad, innovación y sustentabilidad." data-en="Over 15 years connecting Punta Arenas with safety, innovation and sustainability.">Más de 15 años conectando Punta Arenas con seguridad, innovación y sustentabilidad.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="cta-btn" data-es="Ver Servicios" data-en="View Services">Ver Servicios</a>
+                <a href="#contact" class="cta-btn" data-es="Contáctanos" data-en="Contact Us">Contáctanos</a>
+            </div>
+        </div>
+        <!-- Onda animada -->
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="%238FBFDA" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </section>
+
+    <main>
+        <section id="services" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-es="Nuestros Servicios" data-en="Our Services">Nuestros Servicios</h2>
+                <div class="grid">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="100"><h3 data-es="Amarres Marinos" data-en="Moorings">Amarres Marinos</h3><p data-es="Servicios especializados de amarre con tecnología de última generación." data-en="State-of-the-art mooring services.">Servicios especializados de amarre con tecnología de última generación.</p></div>
+                    <div class="card" data-aos="zoom-in" data-aos-delay="200"><h3 data-es="Proyectos Submarinos" data-en="Underwater Projects">Proyectos Submarinos</h3><p data-es="Inspecciones y reparaciones con equipos ROV y buceo profesional." data-en="Inspections and repairs with ROV and professional diving.">Inspecciones y reparaciones con equipos ROV y buceo profesional.</p></div>
+                    <div class="card" data-aos="zoom-in" data-aos-delay="300"><h3 data-es="Logística Portuaria" data-en="Port Logistics">Logística Portuaria</h3><p data-es="Operaciones 24/7 en terminales multipropósito de Magallanes." data-en="24/7 operations in multipurpose terminals of Magallanes.">Operaciones 24/7 en terminales multipropósito de Magallanes.</p></div>
+                    <div class="card" data-aos="zoom-in" data-aos-delay="400"><h3 data-es="Suministros & Transporte" data-en="Supplies & Transport">Suministros & Transporte</h3><p data-es="Abastecimiento y transporte marítimo sustentable en la Patagonia." data-en="Supply and sustainable maritime transport in Patagonia.">Abastecimiento y transporte marítimo sustentable en la Patagonia.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</h2>
+                <p data-aos="fade-up" data-es="Con más de 15 años de experiencia en la región de Magallanes, Mirella Servicios Marítimos se ha consolidado como la empresa líder en soluciones marítimas en la Patagonia Austral." data-en="With over 15 years of experience in the Magallanes region, Mirella Maritime Services has become the leading company in maritime solutions in the Austral Patagonia.">Con más de 15 años de experiencia en la región de Magallanes, Mirella Servicios Marítimos se ha consolidado como la empresa líder en soluciones marítimas en la Patagonia Austral.</p>
+                <div class="stats" data-aos="fade-up">
+                    <div class="stat"><strong>15+</strong><span data-es="Años de experiencia" data-en="Years of experience">Años de experiencia</span></div>
+                    <div class="stat"><strong>10+</strong><span data-es="Embarcaciones" data-en="Vessels">Embarcaciones</span></div>
+                    <div class="stat"><strong>24/7</strong><span data-es="Operaciones" data-en="Operations">Operaciones</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====  TOUR 360°  ===== -->
+        <section id="tour360" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-es="Tour 360° Mirella I" data-en="Mirella I 360° Tour">Tour 360° Mirella I</h2>
+                <div class="tour-wrapper" data-aos="zoom-in">
+                    <iframe src="https://kuula.co/share/NBdQq?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
+                </div>
+
+                <h3 style="text-align:center; margin-top:2rem;" data-es="Escenas" data-en="Scenes">Escenas</h3>
+                <div class="grid" style="margin-top:1rem;">
+                    <a href="https://kuula.co/post/7XZxk" target="_blank" class="card" data-aos="fade-up" data-aos-delay="100"><strong data-es="Cubierta Principal" data-en="Main Deck">Cubierta Principal</strong></a>
+                    <a href="https://kuula.co/post/7XZyk" target="_blank" class="card" data-aos="fade-up" data-aos-delay="200"><strong data-es="Sala de Máquinas" data-en="Engine Room">Sala de Máquinas</strong></a>
+                    <a href="https://kuula.co/post/7XZzk" target="_blank" class="card" data-aos="fade-up" data-aos-delay="300"><strong data-es="Puente de Navegación" data-en="Navigation Bridge">Puente de Navegación</strong></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="fleet" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-es="Nuestra Flota" data-en="Our Fleet">Nuestra Flota</h2>
+                <div class="grid">
+                    <div class="card" data-aos="flip-left" data-aos-delay="100"><h3>Mirella I</h3><p data-es="Remolcador de alta potencia – 50 t de tiro – Sistema DP2" data-en="High-power tug – 50 t pull – DP2 system">Remolcador de alta potencia – 50 t de tiro – Sistema DP2</p></div>
+                    <div class="card" data-aos="flip-left" data-aos-delay="200"><h3>Mirella II</h3><p data-es="Lancha de trabajo – 20 pasajeros – Equipos ROV" data-en="Work boat – 20 passengers – ROV equipment">Lancha de trabajo – 20 pasajeros – Equipos ROV</p></div>
+                    <div class="card" data-aos="flip-left" data-aos-delay="300"><h3>Mirella III</h3><p data-es="Barco suministrador – 100 t de carga – Cámara refrigerada" data-en="Supply vessel – 100 t cargo – Refrigerated hold">Barco suministrador – 100 t de carga – Cámara refrigerada</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="locations" class="section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title" data-es="Nuestras Ubicaciones" data-en="Our Locations">Nuestras Ubicaciones</h2>
+                <div style="height: 400px; border-radius: 16px; overflow:hidden;" data-aos="zoom-in">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.022655634149!2d-70.90732792379618!3d-53.16379833120137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbdb2369d96433593%3A0x8544df3e4333bd5!2sPuerto%20de%20Punta%20Arenas!5e0!3m2!1ses!2scl!4v1699999999999" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" class="section" data-aos="fade-up" style="background: var(--forest); color: var(--cream);">
+            <div class="container">
+                <h2 class="section-title" data-es="Solicita una Cotización" data-en="Request a Quote">Solicita una Cotización</h2>
+                <form id="quoteForm" data-aos="zoom-in">
+                    <input type="text" name="name" placeholder="Nombre / Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <select name="service" required>
+                        <option value="" data-es="Servicio de interés" data-en="Service of interest">Servicio de interés</option>
+                        <option data-es="Amarres" data-en="Moorings">Amarres</option>
+                        <option data-es="Proyectos Submarinos" data-en="Underwater Projects">Proyectos Submarinos</option>
+                        <option data-es="Logística" data-en="Logistics">Logística</option>
+                        <option data-es="Suministros" data-en="Supplies">Suministros</option>
+                        <option data-es="Transporte" data-en="Transport">Transporte</option>
+                    </select>
+                    <textarea name="message" rows="4" placeholder="Cuéntanos tu necesidad / Tell us your need" required></textarea>
+                    <button class="cta-btn" style="background: var(--cta); border: none;" data-es="Enviar Solicitud" data-en="Send Request">Enviar Solicitud</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" data-aos="fade-up">
+        <div class="container footer-content">
+            <div><h4 data-es="Contacto" data-en="Contact">Contacto</h4><ul><li>📞 +56 61 2 123456</li><li>✉️ info@mirella.cl</li><li>📍 José Menéndez 652, Punta Arenas</li></ul></div>
+            <div><h4 data-es="Certificaciones" data-en="Certifications">Certificaciones</h4><ul><li>ISO 9001 / 14001 / 45001</li><li data-es="Sello Ambiental Región de Magallanes" data-en="Magallanes Environmental Seal">Sello Ambiental Región de Magallanes</li></ul></div>
+            <div><h4 data-es="Síguenos" data-en="Follow Us">Síguenos</h4><a href="https://linkedin.com" target="_blank">LinkedIn</a> | <a href="https://x.com" target="_blank">X (Twitter)</a></div>
+        </div>
+        <div class="footer-bottom">© 2025 Mirella Servicios Marítimos. Todos los derechos reservados.</div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Idioma
+        function setLang(lang) {
+            document.querySelectorAll('[data-es][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-'+lang);
+            });
+            localStorage.setItem('lang', lang);
+        }
+        // Cargar idioma guardado
+        setLang(localStorage.getItem('lang') || 'es');
+
+        // Tema oscuro manual
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
+        // Cargar tema guardado
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        // Mobile menu
+        const hamb = document.getElementById('hamburger');
+        const menu = document.getElementById('navMenu');
+        hamb.addEventListener('click', () => menu.classList.toggle('active'));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                const tgt = document.querySelector(this.getAttribute('href'));
+                if (tgt) tgt.scrollIntoView({ behavior: 'smooth' });
+                menu.classList.remove('active');
+            });
+        });
+
+        // Form
+        document.getElementById('quoteForm').addEventListener('submit', e => {
+            e.preventDefault();
+            alert( localStorage.getItem('lang') === 'en' ? 'Thank you! We will contact you soon.' : '¡Gracias! Nos pondremos en contacto pronto.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
