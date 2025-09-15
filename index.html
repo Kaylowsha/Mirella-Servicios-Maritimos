@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mirella Servicios Marítimos | Patagonia Natural</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Servicios marítimos integrales en Punta Arenas y la Patagonia: amarres, logística, suministros, proyectos submarinos y transporte sustentable.">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    /* ===== PALETA PATAGONIA NATURAL ===== */
-    :root {
-      --glacier: #8FBFDA;   /* hielo patagónico */
-      --forest: #798665;    /* bosque de lenga */
-      --earth: #A84600;     /* tierra volcánica */
-      --slate: #22303F;     /* pizarra de montaña */
-      --cream: #E7E8E7;     /* luz austral */
-      --white: #FFFFFF;
-      --accent: #2C6485;    /* azul profundo glaciar */
-      --cta: #FF8C00;       /* coral patagónico */
-    }
+    <meta charset="UTF-8">
+    <title>Mirella Servicios Marítimos | Patagonia Natural</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios marítimos integrales en Punta Arenas y la Patagonia: amarres, logística, suministros, proyectos submarinos y transporte sustentable.">
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--slate); }
-    h1, h2, h3 { font-weight: 700; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    /* ===== HEADER ===== -->
-    header { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,.08); z-index: 999; }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
-    .logo { font-size: 1.3rem; font-weight: 700; color: var(--slate); display: flex; align-items: center; gap: .5rem; }
-    .logo svg { width: 28px; height: 28px; fill: var(--accent); }
-    .nav-menu { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-menu a { font-weight: 600; color: var(--slate); position: relative; }
-    .nav-menu a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
-    .nav-menu a:hover::after { width: 100%; }
-    .cta-btn { background: linear-gradient(45deg, var(--cta), #ffa84d); color: var(--white); padding: .6rem 1.2rem; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(255,140,0,.4); transition: all .3s; }
-    .cta-btn:hover { filter: brightness(1.1); box-shadow: 0 6px 20px rgba(255,140,0,.5); }
-    .cta-btn:active { transform: scale(.95); }
-    .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
-    .hamburger span { width: 24px; height: 3px; background: var(--slate); }
+    <style>
+        /* ===== PALETA PATAGONIA NATURAL ===== */
+        :root {
+            --glacier: #8FBFDA;   /* hielo patagónico */
+            --forest: #798665;    /* bosque de lenga */
+            --earth: #A84600;     /* tierra volcánica */
+            --slate: #22303F;     /* pizarra de montaña */
+            --cream: #E7E8E7;     /* luz austral */
+            --white: #FFFFFF;
+            --accent: #2C6485;    /* azul profundo glaciar */
+            --cta: #FF8C00;       /* coral patagónico */
+        }
 
-    /* ===== HERO ADAPTATIVO ===== -->
-    .hero { position: relative; min-height: 100vh; background: linear-gradient(135deg, var(--slate) 0%, var(--accent) 100%), url("https://images.unsplash.com/photo-1509474525821-6883c149b798?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80") center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 6rem 0 4rem; }
-    .hero-content { position: relative; z-index: 2; max-width: 800px; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
-    .hero p { font-size: clamp(1rem, 2.5vw, 1.3rem); margin-bottom: 2rem; }
-    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .wave { position: absolute; bottom: -1px; left: 0; width: 100%; height: auto; z-index: 1; pointer-events: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--slate); }
 
-    /* ===== SECCIONES ===== -->
-    .section { padding: 4rem 0; position: relative; }
-    .section:nth-child(even) { background: var(--cream); }
-    .section-title { text-align: center; margin-bottom: 2.5rem; color: var(--slate); font-size: clamp(1.5rem, 4vw, 2rem); position: relative; }
-    .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: .5rem auto 0; border-radius: 2px; }
-    .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-    .card { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: 0 8px 20px rgba(0,0,0,.08); text-align: center; transition: transform .3s, box-shadow .3s; }
-    .card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
-    .card h3 { margin: .8rem 0 .5rem; color: var(--slate); }
-    .stats { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
-    .stat { text-align: center; }
-    .stat strong { display: block; font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--accent); }
-    .tour-wrapper { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; background: var(--cream) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M21 12c0 1.3-.5 2.5-1.4 3.4-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4L12 14.8l-2.6 2.6c-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4C1.5 16.5 1 15.3 1 14s.5-2.5 1.4-3.4l7.6-7.6c.9-.9 2.1-1.4 3.4-1.4s2.5.5 3.4 1.4l7.6 7.6c.9.9 1.4 2.1 1.4 3.4z"/></svg>') no-repeat center; background-size: 48px; border-radius: 16px; overflow: hidden; }
-    .tour-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    @media (max-width: 768px) { .tour-wrapper { padding-bottom: 75%; background-size: 40px; } }
-    form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
-    input, select, textarea { padding: .8rem 1rem; border: 1px solid #ccc; border-radius: 12px; font: inherit; transition: border-color .3s; }
-    input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
-    form button { border: none; border-radius: 12px; }
-    footer { background: var(--slate); color: var(--cream); padding: 3rem 0 1rem; text-align: center; }
-    .footer-content { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem; }
-    footer h4 { margin-bottom: .8rem; color: var(--accent); }
-    footer ul { list-style: none; }
-    footer a:hover { color: var(--accent); }
-    .footer-bottom { padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.15); font-size: .85rem; }
-    @media (max-width: 768px) { .hamburger { display: flex; } .nav-menu { position: fixed; left: -100%; top: 60px; flex-direction: column; width: 100%; background: var(--white); padding: 1rem 0; transition: .3s; } .nav-menu.active { left: 0; } .hero { min-height: 70vh; padding: 5rem 0 3rem; } }
+        h1, h2, h3 { font-weight: 700; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+        /* ===== HEADER ===== -->
+        header { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: 0 2px 8px rgba(0,0,0,.08); z-index: 999; }
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+        .logo { font-size: 1.3rem; font-weight: 700; color: var(--slate); display: flex; align-items: center; gap: .5rem; }
+        .logo svg { width: 28px; height: 28px; fill: var(--accent); }
+        .nav-menu { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-menu a { font-weight: 600; color: var(--slate); position: relative; }
+        .nav-menu a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--accent); transition: width .3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .cta-btn { background: linear-gradient(45deg, var(--cta), #ffa84d); color: var(--white); padding: .6rem 1.2rem; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 15px rgba(255,140,0,.4); transition: all .3s; }
+        .cta-btn:hover { filter: brightness(1.1); box-shadow: 0 6px 20px rgba(255,140,0,.5); }
+        .cta-btn:active { transform: scale(.95); }
+        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+        .hamburger span { width: 24px; height: 3px; background: var(--slate); }
+
+        /* ===== HERO ADAPTATIVO ===== -->
+        .hero { position: relative; min-height: 100vh; background: linear-gradient(135deg, var(--slate) 0%, var(--accent) 100%), url("https://images.unsplash.com/photo-1509474525821-6883c149b798?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80") center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 6rem 0 4rem; }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
+        .hero p { font-size: clamp(1rem, 2.5vw, 1.3rem); margin-bottom: 2rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .wave { position: absolute; bottom: -1px; left: 0; width: 100%; height: auto; z-index: 1; pointer-events: none; }
+
+        /* ===== SECCIONES ===== -->
+        .section { padding: 4rem 0; position: relative; }
+        .section:nth-child(even) { background: var(--cream); }
+        .section-title { text-align: center; margin-bottom: 2.5rem; color: var(--slate); font-size: clamp(1.5rem, 4vw, 2rem); position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: .5rem auto 0; border-radius: 2px; }
+        .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .card { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: 0 8px 20px rgba(0,0,0,.08); text-align: center; transition: transform .3s, box-shadow .3s; }
+        .card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+        .card h3 { margin: .8rem 0 .5rem; color: var(--slate); }
+        .stats { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+        .stat { text-align: center; }
+        .stat strong { display: block; font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--accent); }
+        .tour-wrapper { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; background: var(--cream) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M21 12c0 1.3-.5 2.5-1.4 3.4-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4L12 14.8l-2.6 2.6c-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4C1.5 16.5 1 15.3 1 14s.5-2.5 1.4-3.4l7.6-7.6c.9-.9 2.1-1.4 3.4-1.4s2.5.5 3.4 1.4l7.6 7.6c.9.9 1.4 2.1 1.4 3.4z"/></svg>') no-repeat center; background-size: 48px; border-radius: 16px; overflow: hidden; }
+        .tour-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        @media (max-width: 768px) { .tour-wrapper { padding-bottom: 75%; background-size: 40px; } }
+        form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
+        input, select, textarea { padding: .8rem 1rem; border: 1px solid #ccc; border-radius: 12px; font: inherit; transition: border-color .3s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
+        form button { border: none; border-radius: 12px; }
+        footer { background: var(--slate); color: var(--cream); padding: 3rem 0 1rem; text-align: center; }
+        .footer-content { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem; }
+        footer h4 { margin-bottom: .8rem; color: var(--accent); }
+        footer ul { list-style: none; }
+        footer a:hover { color: var(--accent); }
+        .footer-bottom { padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.15); font-size: .85rem; }
+        @media (max-width: 768px) { .hamburger { display: flex; } .nav-menu { position: fixed; left: -100%; top: 60px; flex-direction: column; width: 100%; background: var(--white); padding: 1rem 0; transition: .3s; } .nav-menu.active { left: 0; } .hero { min-height: 70vh; padding: 5rem 0 3rem; } }
+    </style>
 </head>
 <body>
 
@@ -85,13 +91,13 @@
             Mirella Servicios Marítimos
         </div>
         <ul class="nav-menu" id="navMenu">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#about">Nosotros</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#tour360">Tour 360°</a></li>
-                <li><a href="#fleet">Flota</a></li>
-                <li><a href="#locations">Ubicaciones</a></li>
-                <li><a href="#contact">Contacto</a></li>
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#tour360">Tour 360°</a></li>
+            <li><a href="#fleet">Flota</a></li>
+            <li><a href="#locations">Ubicaciones</a></li>
+            <li><a href="#contact">Contacto</a></li>
         </ul>
         <a href="#quote" class="cta-btn">Cotización</a>
         <div class="hamburger" id="hamburger">
@@ -221,11 +227,11 @@
         });
     </script>
 
-    <!-- Tidio después de todo (no bloquea pintado) -->
+    <!-- Tidio al final (no bloquea pintado) -->
     <script>
         window.addEventListener('load', function () {
             var tidioScript = document.createElement('script');
-            tidioScript.src = '//code.tidio.co/gdhiqa6ararw7fjwxivpkhnvvnqgdp.js';
+            tidioScript.src = '//code.tidio.co/gdhiqa6ararw7fjwxivpkhnvvnqwjgdp.js';
             tidioScript.async = true;
             document.body.appendChild(tidioScript);
         });
