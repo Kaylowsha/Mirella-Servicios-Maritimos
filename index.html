@@ -2,362 +2,1239 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mirella Servicios Marítimos | Patagonia Natural</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Servicios marítimos integrales en Punta Arenas y la Patagonia: amarres, logística, suministros, proyectos submarinos y transporte sustentable.">
+    <title>Aqua Patagonia - Servicios Marítimos Especializados | Respuesta Inmediata</title>
+    <meta name="description" content="Servicios marítimos especializados en la Patagonia. 15 años de experiencia en aguas australes. Respuesta en 4 horas, movilización en 24 horas.">
+    
     <style>
-        /* ===== PALETA PATAGONIA NATURAL ===== */
-        :root {
-            --glacier: #8FBFDA;   /* hielo patagónico */
-            --forest: #798665;    /* bosque de lenga */
-            --earth: #A84600;     /* tierra volcánica */
-            --slate: #22303F;     /* pizarra de montaña */
-            --cream: #E7E8E7;     /* luz austral */
-            --white: #FFFFFF;
-            --accent: #2C6485;    /* azul profundo glaciar */
-            --cta: #FF8C00;       /* coral patagónico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--slate); }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-        h1, h2, h3 { font-weight: 700; }
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; }
-
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-
-        /* ===== HEADER ===== */
-        header {
+        /* Header */
+        .header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--white);
-            box-shadow: 0 4px 12px rgba(0,0,0,.08);
-            z-index: 999;
-        }
-        nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
-        .logo { font-size: 1.3rem; font-weight: 700; color: var(--slate); display: flex; align-items: center; gap: .5rem; }
-        .logo svg { width: 28px; height: 28px; fill: var(--accent); }
-        .nav-menu { display: flex; gap: 1.5rem; list-style: none; }
-        .nav-menu a { font-weight: 600; color: var(--slate); position: relative; }
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width .3s;
-        }
-        .nav-menu a:hover::after { width: 100%; }
-
-        .cta-btn {
-            background: linear-gradient(45deg, var(--cta), #ffa84d);
-            color: var(--white);
-            padding: .6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(255,140,0,.4);
-            transition: all .3s;
-        }
-        .cta-btn:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 6px 20px rgba(255,140,0,.5);
+            background: rgba(26, 35, 126, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
-        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
-        .hamburger span { width: 24px; height: 3px; background: var(--slate); }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-        /* ===== HERO PATAGÓNIA ===== */
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #4ECDC4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #FFB347;
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        /* Hero Section */
         .hero {
-            position: relative;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--slate) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-        }
-        .hero-content { position: relative; max-width: 800px; animation: fadeUp 1s; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
-        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-        /* ===== SECCIONES ===== */
-        .section { padding: 5rem 0; }
-        .section:nth-child(even) { background: var(--cream); }
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--slate);
-            font-size: 2rem;
             position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            margin: .5rem auto 0;
-            border-radius: 2px;
-        }
-
-        .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-        .card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,.08);
-            text-align: center;
-            transition: transform .3s, box-shadow .3s;
-        }
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,.15);
-        }
-        .card h3 { margin: .8rem 0 .5rem; color: var(--slate); }
-
-        .stats { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
-        .stat { text-align: center; }
-        .stat strong { display: block; font-size: 2.2rem; color: var(--accent); }
-
-        /* ===== TOUR 360° ===== */
-        .tour-wrapper {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 escritorio */
-            background: var(--cream) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23999"><path d="M21 12c0 1.3-.5 2.5-1.4 3.4-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4L12 14.8l-2.6 2.6c-1 1-2.3 1.4-3.6 1.4-1.3 0-2.5-.5-3.4-1.4C1.5 16.5 1 15.3 1 14s.5-2.5 1.4-3.4l7.6-7.6c.9-.9 2.1-1.4 3.4-1.4s2.5.5 3.4 1.4l7.6 7.6c.9.9 1.4 2.1 1.4 3.4z"/></svg>') no-repeat center;
-            background-size: 48px;
-            border-radius: 16px;
             overflow: hidden;
         }
-        .tour-wrapper iframe {
+
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        @media (max-width: 768px) {
-            .tour-wrapper { padding-bottom: 75%; background-size: 40px; }
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%234ECDC4" opacity="0.1"><path d="M0 0v100c166.7 0 166.7-66 333.3-66S666.7 100 833.3 34C916.7 0 916.7 0 1000 0z"/></svg>') repeat-x;
+            animation: wave 20s ease-in-out infinite;
         }
 
-        /* ===== FORM ===== */
-        form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
-        input, select, textarea {
-            padding: .8rem 1rem;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            font: inherit;
-            transition: border-color .3s;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--accent);
-            outline: none;
-        }
-        form button {
-            border: none;
-            border-radius: 12px;
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-50px); }
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--slate);
-            color: var(--cream);
-            padding: 3rem 0 1rem;
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #4ECDC4;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(78, 205, 196, 0.2);
+            border: 2px solid #4ECDC4;
+            color: #4ECDC4;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(78, 205, 196, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0); }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4ECDC4;
+            padding: 1rem 2rem;
+            border: 2px solid #4ECDC4;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #4ECDC4;
+            color: #1a237e;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-hero {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 1rem 0;
             text-align: center;
         }
-        .footer-content {
+
+        .status-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            padding: 0 2rem;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #4ECDC4;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        /* Our Advantage Section */
+        .advantage-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .advantage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #4ECDC4;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.2);
+        }
+
+        .advantage-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card h3 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .advantage-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            transform: translate(-25%, -25%);
+        }
+
+        .service-header {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #4ECDC4;
+        }
+
+        .urgency-badge {
+            background: #FFB347;
+            color: #1a237e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .service-description {
+            position: relative;
+            z-index: 2;
+            margin: 1.5rem 0;
+        }
+
+        .service-description p {
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .service-details ul {
+            list-style: none;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-details li {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .service-cta {
+            position: relative;
+            z-index: 2;
+            margin-top: 2rem;
+        }
+
+        .btn-service {
+            background: #4ECDC4;
+            color: #1a237e;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-service:hover {
+            background: #FFB347;
+            transform: translateY(-2px);
+        }
+
+        .response-time {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Experience Stories */
+        .stories-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .story-card h4 {
+            color: #1a237e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .story-card p {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .story-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .time-indicator,
+        .weather-proof {
+            background: #4ECDC4;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .satisfaction {
+            color: #FFB347;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-widget {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .captain-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
-        footer h4 { margin-bottom: .8rem; color: var(--accent); }
-        footer ul { list-style: none; }
-        footer a:hover { color: var(--accent); }
+
+        .captain-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #4ECDC4;
+            background: #4ECDC4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .captain-details h4 {
+            color: #4ECDC4;
+            margin-bottom: 0.5rem;
+        }
+
+        .captain-details p {
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-call {
+            background: #FFB347;
+            color: #1a237e;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-call:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 179, 71, 0.4);
+        }
+
+        .emergency-contact {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(78, 205, 196, 0.3);
+        }
+
+        .btn-emergency {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            animation: emergencyPulse 3s infinite;
+        }
+
+        @keyframes emergencyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a237e;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #4ECDC4;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #4ECDC4;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 0.7;
+        }
+
         .footer-bottom {
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,.15);
-            font-size: .85rem;
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(78, 205, 196, 0.3);
+            opacity: 0.6;
         }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* ===== RESPONSIVE ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 60px;
-                flex-direction: column;
-                width: 100%;
-                background: var(--white);
-                padding: 1rem 0;
-                transition: .3s;
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
             }
-            .nav-menu.active { left: 0; }
-            .hero h1 { font-size: 2rem; }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .status-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .story-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-options {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <svg viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-2 16l-2-3v-4l2 2v2h4v-2l2-2v4l-2 3h-4zm6-10l-2-2h-4l-2 2v2h8v-2z"/></svg>
-                Mirella Servicios Marítimos
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#about">Nosotros</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#tour360">Tour 360°</a></li>
-                <li><a href="#fleet">Flota</a></li>
-                <li><a href="#locations">Ubicaciones</a></li>
-                <li><a href="#contact">Contacto</a></li>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Recreación del logo basado en la descripción -->
+                <circle cx="100" cy="100" r="95" fill="#1a237e" stroke="#4ECDC4" stroke-width="4"/>
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#FFB347" stroke-width="3" stroke-dasharray="8,4"/>
+                
+                <!-- Boat -->
+                <path d="M60 110 L140 110 L135 120 L65 120 Z" fill="#4ECDC4"/>
+                <path d="M90 110 L90 85 L110 85 L110 110" fill="#4ECDC4"/>
+                <rect x="95" y="70" width="10" height="25" fill="#4ECDC4"/>
+                
+                <!-- Waves -->
+                <path d="M30 130 Q40 125 50 130 T70 130 T90 130 T110 130 T130 130 T150 130 T170 130" 
+                      fill="none" stroke="#4ECDC4" stroke-width="2"/>
+                <path d="M40 140 Q50 135 60 140 T80 140 T100 140 T120 140 T140 140 T160 140" 
+                      fill="none" stroke="#4ECDC4" stroke-width="2"/>
+                
+                <!-- Stars -->
+                <circle cx="75" cy="50" r="2" fill="#FFB347"/>
+                <circle cx="125" cy="45" r="2" fill="#FFB347"/>
+                <circle cx="110" cy="60" r="1.5" fill="#FFB347"/>
+                
+                <!-- Sun rays -->
+                <path d="M45 70 L55 75" stroke="#FFB347" stroke-width="2"/>
+                <path d="M40 85 L50 85" stroke="#FFB347" stroke-width="2"/>
+                <path d="M45 100 L55 95" stroke="#FFB347" stroke-width="2"/>
+                
+                <!-- Text -->
+                <text x="100" y="40" text-anchor="middle" fill="#4ECDC4" font-size="16" font-weight="bold">AQUA</text>
+                <text x="100" y="180" text-anchor="middle" fill="#FFB347" font-size="12" font-weight="bold">SERVICIOS INTEGRALES</text>
+            </svg>
+            
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <a href="#quote" class="cta-btn">Cotización</a>
-            <div class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </div>
+            
+            <a href="#contacto" class="contact-btn">📞 Contacto Directo</a>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content container">
-            <h1>Mirella Servicios Marítimos: Soluciones Marítimas en la Patagonia</h1>
-            <p>Más de 15 años conectando Punta Arenas con seguridad, innovación y sustentabilidad.</p>
-            <div class="hero-buttons">
-                <a href="#services" class="cta-btn">Ver Servicios</a>
-                <a href="#contact" class="cta-btn">Contáctanos</a>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container fade-in">
+            <div class="hero-content">
+                <h1>Servicios Marítimos Especializados en la Patagonia</h1>
+                <p class="hero-subtitle">15 años de experiencia en aguas australes - Respuesta inmediata cuando más lo necesitas</p>
+                
+                <div class="availability-badge">
+                    🟢 FLOTA DISPONIBLE • Respuesta en 4 horas
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="tel:+56912345678" class="btn-primary">
+                        📞 Contacto Directo
+                    </a>
+                    <a href="#servicios" class="btn-secondary">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <svg class="logo-hero" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Logo ampliado para hero -->
+                    <circle cx="100" cy="100" r="95" fill="#1a237e" stroke="#4ECDC4" stroke-width="4"/>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="#FFB347" stroke-width="3" stroke-dasharray="8,4"/>
+                    
+                    <!-- Boat -->
+                    <path d="M60 110 L140 110 L135 120 L65 120 Z" fill="#4ECDC4"/>
+                    <path d="M90 110 L90 85 L110 85 L110 110" fill="#4ECDC4"/>
+                    <rect x="95" y="70" width="10" height="25" fill="#4ECDC4"/>
+                    
+                    <!-- Waves -->
+                    <path d="M30 130 Q40 125 50 130 T70 130 T90 130 T110 130 T130 130 T150 130 T170 130" 
+                          fill="none" stroke="#4ECDC4" stroke-width="2"/>
+                    <path d="M40 140 Q50 135 60 140 T80 140 T100 140 T120 140 T140 140 T160 140" 
+                          fill="none" stroke="#4ECDC4" stroke-width="2"/>
+                    
+                    <!-- Stars -->
+                    <circle cx="75" cy="50" r="2" fill="#FFB347"/>
+                    <circle cx="125" cy="45" r="2" fill="#FFB347"/>
+                    <circle cx="110" cy="60" r="1.5" fill="#FFB347"/>
+                    
+                    <!-- Sun rays -->
+                    <path d="M45 70 L55 75" stroke="#FFB347" stroke-width="2"/>
+                    <path d="M40 85 L50 85" stroke="#FFB347" stroke-width="2"/>
+                    <path d="M45 100 L55 95" stroke="#FFB347" stroke-width="2"/>
+                    
+                    <!-- Text -->
+                    <text x="100" y="40" text-anchor="middle" fill="#4ECDC4" font-size="16" font-weight="bold">AQUA</text>
+                    <text x="100" y="180" text-anchor="middle" fill="#FFB347" font-size="12" font-weight="bold">SERVICIOS INTEGRALES</text>
+                </svg>
             </div>
         </div>
     </section>
 
-    <main>
-        <section id="services" class="section">
-            <div class="container">
-                <h2 class="section-title">Nuestros Servicios</h2>
-                <div class="grid">
-                    <div class="card"><h3>Amarres Marinos</h3><p>Servicios especializados de amarre con tecnología de última generación.</p></div>
-                    <div class="card"><h3>Proyectos Submarinos</h3><p>Inspecciones y reparaciones con equipos ROV y buceo profesional.</p></div>
-                    <div class="card"><h3>Logística Portuaria</h3><p>Operaciones 24/7 en terminales multipropósito de Magallanes.</p></div>
-                    <div class="card"><h3>Suministros & Transporte</h3><p>Abastecimiento y transporte marítimo sustentable en la Patagonia.</p></div>
-                </div>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-container">
+            <div class="status-item">
+                <span class="status-dot"></span>
+                <strong>FLOTA OPERATIVA</strong>
             </div>
-        </section>
-
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">Sobre Nosotros</h2>
-                <p>Con más de 15 años de experiencia en la región de Magallanes, Mirella Servicios Marítimos se ha consolidado como la empresa líder en soluciones marítimas en la Patagonia Austral.</p>
-                <div class="stats">
-                    <div class="stat"><strong>15+</strong>Años de experiencia</div>
-                    <div class="stat"><strong>10+</strong>Embarcaciones</div>
-                    <div class="stat"><strong>24/7</strong>Operaciones</div>
-                </div>
+            <div class="status-item">
+                ⏱️ Respuesta garantizada: <strong>4 horas</strong>
             </div>
-        </section>
-
-        <!-- =====  TOUR 360°  ===== -->
-        <section id="tour360" class="section">
-            <div class="container">
-                <h2 class="section-title">Tour 360° Mirella I</h2>
-                <div class="tour-wrapper">
-                    <iframe src="https://kuula.co/share/NBdQq?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
-                </div>
-
-                <h3 style="text-align:center; margin-top:2rem;">Escenas</h3>
-                <div class="grid" style="margin-top:1rem;">
-                    <a href="https://kuula.co/post/7XZxk" target="_blank" class="card"><strong>Cubierta Principal</strong></a>
-                    <a href="https://kuula.co/post/7XZyk" target="_blank" class="card"><strong>Sala de Máquinas</strong></a>
-                    <a href="https://kuula.co/post/7XZzk" target="_blank" class="card"><strong>Puente de Navegación</strong></a>
-                </div>
+            <div class="status-item">
+                📍 Base actual: <strong>Puerto Punta Arenas</strong>
             </div>
-        </section>
-
-        <section id="fleet" class="section">
-            <div class="container">
-                <h2 class="section-title">Nuestra Flota</h2>
-                <div class="grid">
-                    <div class="card"><h3>Mirella I</h3><p>Remolcador de alta potencia – 50 t de tiro – Sistema DP2</p></div>
-                    <div class="card"><h3>Mirella II</h3><p>Lancha de trabajo – 20 pasajeros – Equipos ROV</p></div>
-                    <div class="card"><h3>Mirella III</h3><p>Barco suministrador – 100 t de carga – Cámara refrigerada</p></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="locations" class="section">
-            <div class="container">
-                <h2 class="section-title">Nuestras Ubicaciones</h2>
-                <div style="height: 400px; border-radius: 16px; overflow:hidden;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3097.022655634149!2d-70.90732792379618!3d-53.16379833120137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbdb2369d96433593%3A0x8544df3e4333bd5!2sPuerto%20de%20Punta%20Arenas!5e0!3m2!1ses!2scl!4v1699999999999" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section id="quote" class="section" style="background: var(--forest); color: var(--cream);">
-            <div class="container">
-                <h2 class="section-title" style="color: var(--cream);">Solicita una Cotización</h2>
-                <form id="quoteForm">
-                    <input type="text" name="name" placeholder="Nombre" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <select name="service" required>
-                        <option value="">Servicio de interés</option>
-                        <option>Amarres</option>
-                        <option>Proyectos Submarinos</option>
-                        <option>Logística</option>
-                        <option>Suministros</option>
-                        <option>Transporte</option>
-                    </select>
-                    <textarea name="message" rows="4" placeholder="Cuéntanos tu necesidad" required></textarea>
-                    <button class="cta-btn" style="background: var(--cta); border: none;">Enviar Solicitud</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contact">
-        <div class="container footer-content">
-            <div><h4>Contacto</h4><ul><li>📞 +56 61 2 123456</li><li>✉️ info@mirella.cl</li><li>📍 José Menéndez 652, Punta Arenas</li></ul></div>
-            <div><h4>Certificaciones</h4><ul><li>ISO 9001 / 14001 / 45001</li><li>Sello Ambiental Región de Magallanes</li></ul></div>
-            <div><h4>Síguenos</h4><a href="https://linkedin.com" target="_blank">LinkedIn</a> | <a href="https://x.com" target="_blank">X (Twitter)</a></div>
         </div>
-        <div class="footer-bottom">© 2025 Mirella Servicios Marítimos. Todos los derechos reservados.</div>
+    </div>
+
+    <!-- Our Advantage Section -->
+    <section class="advantage-section">
+        <div class="container">
+            <h2 class="section-title">La experiencia patagónica que tu proyecto necesita</h2>
+            <p class="section-subtitle">15 años navegando estas aguas nos han enseñado que en la Patagonia, <strong>la agilidad y el conocimiento local marcan la diferencia</strong>.</p>
+            
+            <div class="advantage-grid">
+                <div class="advantage-card fade-in">
+                    <div class="advantage-icon">⚡</div>
+                    <h3>Respuesta Inmediata</h3>
+                    <p>Cotización en 4 horas, movilización en 24 horas. Cuando el tiempo apremia, estamos listos.</p>
+                </div>
+                
+                <div class="advantage-card fade-in">
+                    <div class="advantage-icon">🤝</div>
+                    <h3>Trato Directo</h3>
+                    <p>Hablas directamente con quien ejecuta el trabajo. Sin intermediarios, sin demoras.</p>
+                </div>
+                
+                <div class="advantage-card fade-in">
+                    <div class="advantage-icon">🌊</div>
+                    <h3>Especialistas Patagónicos</h3>
+                    <p>Conocemos cada bahía, cada marea, cada condición de estas aguas australes.</p>
+                </div>
+                
+                <div class="advantage-card fade-in">
+                    <div class="advantage-icon">🔧</div>
+                    <h3>Flexibilidad Total</h3>
+                    <p>Adaptamos el servicio sobre la marcha. Tu proyecto evoluciona, nosotros también.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios Especializados</h2>
+            <p class="section-subtitle">Soluciones marítimas integrales diseñadas para las condiciones únicas de la Patagonia</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-header">
+                        <h3>Proyectos Submarinos</h3>
+                        <span class="urgency-badge">⚡ SERVICIO URGENTE</span>
+                    </div>
+                    
+                    <div class="service-description">
+                        <p><strong>Problema:</strong> ¿Inspección submarina que no puede esperar?</p>
+                        <p><strong>Solución:</strong> Equipos ROV + buzos certificados listos en 24h</p>
+                        <p><strong>Resultado:</strong> Informe técnico completo en 48-72 horas</p>
+                    </div>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li>🤿 Buzos certificados ACUC/PADI</li>
+                            <li>🎥 Video HD + fotos submarinas</li>
+                            <li>📋 Informe técnico detallado</li>
+                            <li>⚡ Disponible 24/7 para emergencias</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn-service">
+                            📞 Solicitar Inspección Urgente
+                        </a>
+                        <span class="response-time">Respuesta en 4 horas</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-header">
+                        <h3>Amarres Marinos</h3>
+                        <span class="urgency-badge">🔧 ESPECIALIZADO</span>
+                    </div>
+                    
+                    <div class="service-description">
+                        <p><strong>Problema:</strong> ¿Necesitas amarres seguros en condiciones patagónicas?</p>
+                        <p><strong>Solución:</strong> Instalación y mantención con tecnología de última generación</p>
+                        <p><strong>Resultado:</strong> Amarres certificados resistentes a vientos australes</p>
+                    </div>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li>⚓ Instalación de amarres especializados</li>
+                            <li>🔧 Mantención preventiva y correctiva</li>
+                            <li>📐 Cálculos de resistencia personalizados</li>
+                            <li>🌊 Diseño para condiciones extremas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn-service">
+                            📞 Consultar Instalación
+                        </a>
+                        <span class="response-time">Evaluación técnica inmediata</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-header">
+                        <h3>Logística Portuaria</h3>
+                        <span class="urgency-badge">📦 24/7</span>
+                    </div>
+                    
+                    <div class="service-description">
+                        <p><strong>Problema:</strong> ¿Operaciones portuarias que no pueden detenerse?</p>
+                        <p><strong>Solución:</strong> Servicios 24/7 en terminales de Magallanes</p>
+                        <p><strong>Resultado:</strong> Operaciones continuas sin interrupciones</p>
+                    </div>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li>🚢 Atención a embarcaciones de todo calado</li>
+                            <li>📦 Manejo de carga especializada</li>
+                            <li>⏰ Operaciones 24 horas, 365 días</li>
+                            <li>🔄 Coordinación intermodal</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn-service">
+                            📞 Coordinar Operación
+                        </a>
+                        <span class="response-time">Disponibilidad inmediata</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-header">
+                        <h3>Suministros & Transporte</h3>
+                        <span class="urgency-badge">🌱 SUSTENTABLE</span>
+                    </div>
+                    
+                    <div class="service-description">
+                        <p><strong>Problema:</strong> ¿Transporte marítimo confiable en la Patagonia?</p>
+                        <p><strong>Solución:</strong> Flota especializada para condiciones australes</p>
+                        <p><strong>Resultado:</strong> Entregas seguras con compromiso ambiental</p>
+                    </div>
+                    
+                    <div class="service-details">
+                        <ul>
+                            <li>🚤 Embarcaciones adaptadas a la región</li>
+                            <li>📦 Transporte de carga general y especializada</li>
+                            <li>🌿 Protocolos ambientales estrictos</li>
+                            <li>📍 Acceso a puertos remotos</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn-service">
+                            📞 Solicitar Transporte
+                        </a>
+                        <span class="response-time">Programación flexible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Stories -->
+    <section id="experiencia" class="stories-section">
+        <div class="container">
+            <h2 class="section-title">Experiencias que hablan por nosotros</h2>
+            <p class="section-subtitle">15 años resolviendo desafíos marítimos en las condiciones más exigentes de Chile</p>
+            
+            <div class="story-grid">
+                <div class="story-card fade-in">
+                    <div class="story-content">
+                        <h4>"Necesitábamos una inspección submarina urgente"</h4>
+                        <p>"Otros proveedores nos decían que esperáramos semanas. Aqua Patagonia nos atendió el mismo día y resolvió nuestro problema en 48 horas. Su conocimiento de las corrientes locales fue clave para completar el trabajo."</p>
+                    </div>
+                    <div class="story-result">
+                        <span class="time-indicator">⏱️ Resuelto en 2 días</span>
+                        <span class="satisfaction">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                
+                <div class="story-card fade-in">
+                    <div class="story-content">
+                        <h4>"Trabajo en condiciones complejas de Patagonia"</h4>
+                        <p>"Su experiencia en aguas patagónicas fue determinante. Completaron la instalación de amarres incluso con vientos de 40 nudos, cuando otros habrían esperado mejores condiciones. Profesionalismo total."</p>
+                    </div>
+                    <div class="story-result">
+                        <span class="weather-proof">🌊 Trabajo completado</span>
+                        <span class="satisfaction">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in">
+                    <div class="story-content">
+                        <h4>"Coordinación logística de emergencia"</h4>
+                        <p>"Cuando necesitamos transporte urgente de equipos a un proyecto remoto, Aqua Patagonia organizó toda la operación en menos de 6 horas. Su capacidad de respuesta inmediata salvó nuestro cronograma."</p>
+                    </div>
+                    <div class="story-result">
+                        <span class="time-indicator">⚡ 6 horas total</span>
+                        <span class="satisfaction">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+
+                <div class="story-card fade-in">
+                    <div class="story-content">
+                        <h4>"Flexibilidad que marca la diferencia"</h4>
+                        <p>"A mitad del proyecto cambiaron los requerimientos técnicos. Mientras otras empresas habrían pedido nueva licitación, ellos se adaptaron inmediatamente. Esa agilidad no tiene precio."</p>
+                    </div>
+                    <div class="story-result">
+                        <span class="weather-proof">🔧 Adaptación total</span>
+                        <span class="satisfaction">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">¿Proyecto urgente? Conectemos ahora</h2>
+            <p class="section-subtitle" style="color: #4ECDC4;">Respuesta garantizada en 4 horas - Hablemos directamente</p>
+            
+            <div class="contact-widget">
+                <div class="captain-info">
+                    <div class="captain-photo">
+                        🧑‍✈️
+                    </div>
+                    <div class="captain-details">
+                        <h4>Capitán Aqua Patagonia</h4>
+                        <p>🟢 Disponible ahora</p>
+                        <p>Responde típicamente en <strong>10 minutos</strong></p>
+                        <p>15+ años navegando aguas patagónicas</p>
+                    </div>
+                </div>
+                
+                <div class="contact-options">
+                    <a href="https://wa.me/56912345678?text=Hola, necesito información sobre servicios marítimos urgentes..." 
+                       class="btn-whatsapp" target="_blank">
+                        💬 WhatsApp Directo
+                    </a>
+                    <a href="tel:+56912345678" class="btn-call">
+                        📞 Llamar Ahora
+                    </a>
+                </div>
+                
+                <div class="emergency-contact">
+                    <p><strong>¿EMERGENCIA MARÍTIMA?</strong></p>
+                    <a href="tel:+56987654321" class="btn-emergency">
+                        🚨 LÍNEA DE EMERGENCIA 24/7
+                    </a>
+                    <p style="margin-top: 1rem; opacity: 0.8;">
+                        Respuesta garantizada en 15 minutos
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tu tranquilidad garantizada</h3>
+                <ul>
+                    <li>🛡️ <strong>Seguros:</strong> Póliza responsabilidad civil vigente</li>
+                    <li>📜 <strong>Certificaciones:</strong> DIRECTEMAR • SOLAS • STCW</li>
+                    <li>⭐ <strong>Experiencia:</strong> 15+ años en Patagonia</li>
+                    <li>🚨 <strong>Emergencias:</strong> Disponibles 24/7 • 365 días</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#servicios">Proyectos Submarinos</a></li>
+                    <li><a href="#servicios">Amarres Marinos</a></li>
+                    <li><a href="#servicios">Logística Portuaria</a></li>
+                    <li><a href="#servicios">Suministros & Transporte</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>📍 Puerto Punta Arenas, Magallanes</li>
+                    <li>📞 <a href="tel:+56912345678">+56 9 1234 5678</a></li>
+                    <li>💬 <a href="https://wa.me/56912345678" target="_blank">WhatsApp Directo</a></li>
+                    <li>✉️ <a href="mailto:info@aquapatagonia.cl">info@aquapatagonia.cl</a></li>
+                    <li>🚨 <strong>Emergencias:</strong> <a href="tel:+56987654321">+56 9 8765 4321</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horarios</h3>
+                <ul>
+                    <li><strong>Oficina:</strong> Lun-Vie 8:00-18:00</li>
+                    <li><strong>Operaciones:</strong> 24/7 • 365 días</li>
+                    <li><strong>Emergencias:</strong> Inmediato</li>
+                    <li><strong>WhatsApp:</strong> Respuesta en 10 min</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Aqua Patagonia - Servicios Marítimos Integrales. Todos los derechos reservados.</p>
+            <p>Especialistas en servicios marítimos para la Patagonia Austral • Respuesta inmediata • Experiencia comprobada</p>
+        </div>
     </footer>
 
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/56912345678?text=Hola, necesito información sobre servicios marítimos..." 
+       class="whatsapp-float" target="_blank" title="WhatsApp Directo">
+        💬
+    </a>
+
     <script>
-        // Mobile menu
-        const hamb = document.getElementById('hamburger');
-        const menu = document.getElementById('navMenu');
-        hamb.addEventListener('click', () => menu.classList.toggle('active'));
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function (e) {
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const tgt = document.querySelector(this.getAttribute('href'));
-                if (tgt) tgt.scrollIntoView({ behavior: 'smooth' });
-                menu.classList.remove('active');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
-        // Form
-        document.getElementById('quoteForm').addEventListener('submit', e => {
-            e.preventDefault();
-            alert('Gracias por tu solicitud. Nos contactaremos pronto.');
-            e.target.reset();
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 35, 126, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.2)';
+            } else {
+                header.style.background = 'rgba(26, 35, 126, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Update status indicators
+        function updateStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const isBusinessHours = hours >= 8 && hours <= 18;
+            
+            // You can implement real-time status updates here
+            console.log('Status updated:', new Date().toLocaleTimeString());
+        }
+
+        // Update status every 5 minutes
+        setInterval(updateStatus, 300000);
+        updateStatus(); // Initial call
+
+        // WhatsApp click tracking
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('WhatsApp contact initiated');
+                // Add analytics tracking here
+            });
+        });
+
+        // Phone call tracking
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('Phone call initiated');
+                // Add analytics tracking here
+            });
         });
     </script>
 </body>
