@@ -1131,18 +1131,51 @@
             border: 1px solid rgba(78, 205, 196, 0.3);
         }
 
-        /* Mobile Tour Optimizations */
+        /* Mobile Tour Optimizations - FIXED */
         @media (max-width: 768px) {
             .tour-360-container {
                 height: 400px;
             }
 
+            /* COLLAPSIBLE controls for mobile */
             .tour-controls {
                 top: 10px;
                 right: 10px;
-                left: 10px;
-                max-width: none;
+                left: auto;
+                max-width: 280px;
                 padding: 0.8rem;
+                transform: translateX(calc(100% - 60px)); /* Hide most of it */
+                transition: transform 0.3s ease;
+                border-radius: 15px;
+            }
+
+            .tour-controls.expanded {
+                transform: translateX(0); /* Show full panel */
+            }
+
+            .tour-controls::before {
+                content: '☰';
+                position: absolute;
+                left: -50px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(26, 35, 126, 0.9);
+                color: #4ECDC4;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                cursor: pointer;
+                backdrop-filter: blur(10px);
+                border: 2px solid #4ECDC4;
+            }
+
+            .tour-controls.expanded::before {
+                content: '✕';
+                font-size: 1rem;
             }
 
             .scene-buttons {
@@ -1153,38 +1186,145 @@
 
             .scene-btn {
                 padding: 0.5rem;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
                 text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
+            /* MINIMAL info panel for mobile */
             .tour-info-panel {
                 bottom: 10px;
                 left: 10px;
-                right: 10px;
-                padding: 0.8rem;
+                right: 60px; /* Leave space for expand button */
+                padding: 0.6rem;
+                transform: translateY(calc(100% - 50px)); /* Hide most of it */
+                transition: transform 0.3s ease;
+            }
+
+            .tour-info-panel.expanded {
+                transform: translateY(0); /* Show full panel */
+            }
+
+            .tour-info-panel::after {
+                content: '▲';
+                position: absolute;
+                right: 15px;
+                top: -30px;
+                background: rgba(26, 35, 126, 0.9);
+                color: #4ECDC4;
+                width: 30px;
+                height: 30px;
+                border-radius: 50% 50% 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+                cursor: pointer;
+                backdrop-filter: blur(10px);
+                border: 2px solid #4ECDC4;
+                border-bottom: none;
+            }
+
+            .tour-info-panel.expanded::after {
+                content: '▼';
             }
 
             .current-scene-info h3 {
                 font-size: 1rem;
+                margin-bottom: 0.3rem;
             }
 
             .current-scene-info p {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+                display: none; /* Hide description when collapsed */
+            }
+
+            .tour-info-panel.expanded .current-scene-info p {
+                display: block; /* Show when expanded */
+            }
+
+            .tour-instructions {
+                display: none; /* Hide instructions when collapsed */
+            }
+
+            .tour-info-panel.expanded .tour-instructions {
+                display: block; /* Show when expanded */
             }
 
             .tour-instructions p {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
 
             .modal-content {
-                margin: 20% auto;
-                padding: 1.5rem;
+                margin: 15% auto;
+                padding: 1.2rem;
                 width: 95%;
             }
 
             .tour-features {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
+            }
+
+            /* Quick access button for mobile */
+            .mobile-quick-controls {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                display: flex;
+                gap: 0.5rem;
+                z-index: 150;
+            }
+
+            .quick-btn {
+                background: rgba(26, 35, 126, 0.9);
+                color: #4ECDC4;
+                border: 1px solid #4ECDC4;
+                border-radius: 20px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+                cursor: pointer;
+                backdrop-filter: blur(10px);
+                white-space: nowrap;
+            }
+
+            .quick-btn:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Desktop controls remain unchanged */
+        @media (min-width: 769px) {
+            .tour-controls {
+                top: 20px;
+                right: 20px;
+                left: auto;
+                max-width: 280px;
+                padding: 1rem;
+                transform: none;
+            }
+
+            .tour-controls::before {
+                display: none;
+            }
+
+            .tour-info-panel {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                padding: 1rem;
+                transform: none;
+            }
+
+            .tour-info-panel::after {
+                display: none;
+            }
+
+            .mobile-quick-controls {
+                display: none;
             }
         }
 
@@ -1915,7 +2055,7 @@
                         <div id="tour-viewer" class="tour-viewer"></div>
                         
                         <!-- Tour Controls -->
-                        <div class="tour-controls">
+                        <div class="tour-controls" id="tour-controls">
                             <div class="scene-selector">
                                 <h4>🚢 Escenas Disponibles</h4>
                                 <div class="scene-buttons">
@@ -1944,9 +2084,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Mobile Quick Controls -->
+                        <div class="mobile-quick-controls">
+                            <button class="quick-btn" onclick="toggleMobileControls()">
+                                📋 Controles
+                            </button>
+                            <button class="quick-btn" onclick="toggleMobileInfo()">
+                                ℹ️ Info
+                            </button>
+                        </div>
                         
                         <!-- Tour Info Panel -->
-                        <div class="tour-info-panel">
+                        <div class="tour-info-panel" id="tour-info-panel">
                             <div class="current-scene-info">
                                 <h3 id="scene-title">Cubierta Principal</h3>
                                 <p id="scene-description">Vista panorámica de la cubierta de trabajo con equipos especializados</p>
@@ -2291,6 +2441,45 @@
             observer.observe(el);
         });
 
+        // Mobile tour controls
+        function toggleMobileControls() {
+            const controls = document.getElementById('tour-controls');
+            controls.classList.toggle('expanded');
+        }
+
+        function toggleMobileInfo() {
+            const infoPanel = document.getElementById('tour-info-panel');
+            infoPanel.classList.toggle('expanded');
+        }
+
+        // Auto-setup mobile interactions
+        function setupMobileInteractions() {
+            const controls = document.getElementById('tour-controls');
+            const infoPanel = document.getElementById('tour-info-panel');
+            
+            // Mobile: tap to expand/collapse controls
+            if (window.innerWidth <= 768) {
+                // Auto-collapse after 3 seconds on mobile
+                setTimeout(() => {
+                    controls.classList.remove('expanded');
+                    infoPanel.classList.remove('expanded');
+                }, 3000);
+                
+                // Touch interactions for mobile
+                controls.addEventListener('click', function(e) {
+                    if (e.target === this || e.target === this.querySelector('::before')) {
+                        this.classList.toggle('expanded');
+                    }
+                });
+                
+                infoPanel.addEventListener('click', function(e) {
+                    if (e.target === this || e.target === this.querySelector('::after')) {
+                        this.classList.toggle('expanded');
+                    }
+                });
+            }
+        }
+
         // Enhanced 360° Tour functionality
         let currentAudio = null;
         let isPlaying = false;
@@ -2311,6 +2500,9 @@
             
             // Setup scene navigation
             setupSceneNavigation();
+            
+            // Setup mobile interactions
+            setupMobileInteractions();
             
             console.log('360° Tour initialized');
         }
