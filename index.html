@@ -649,8 +649,194 @@
             opacity: 0.6;
         }
 
-        /* Fleet Tour Section */
-        .fleet-tour-section {
+        /* Company Values Section */
+        .company-values-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #4ECDC4;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.2);
+        }
+
+        .mission-card {
+            border-top-color: #4ECDC4;
+        }
+
+        .vision-card {
+            border-top-color: #FFB347;
+        }
+
+        .values-card {
+            border-top-color: #1a237e;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .value-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            border-radius: 50%;
+            filter: grayscale(0.2);
+        }
+
+        .mission-card .value-icon {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+        }
+
+        .vision-card .value-icon {
+            background: linear-gradient(45deg, #FFB347, #FF8C42);
+        }
+
+        .values-card .value-icon {
+            background: linear-gradient(45deg, #1a237e, #3949ab);
+        }
+
+        .value-header h3 {
+            color: #1a237e;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .value-content p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .values-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .value-item:hover {
+            background: #e9ecef;
+        }
+
+        .value-bullet {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .value-text {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .value-text strong {
+            color: #1a237e;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Company Certifications */
+        .company-certifications {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .company-certifications h3 {
+            text-align: center;
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4ECDC4;
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            border-radius: 50%;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .cert-text strong {
+            color: #1a237e;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .cert-text span {
+            color: #666;
+            font-size: 0.85rem;
+        }
             padding: 5rem 0;
             background: white;
         }
@@ -1268,6 +1454,117 @@
                             📞 Solicitar Transporte
                         </a>
                         <span class="response-time">Programación flexible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Values Section -->
+    <section class="company-values-section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Empresa</h2>
+            <p class="section-subtitle">Valores sólidos que respaldan cada proyecto en aguas patagónicas</p>
+            
+            <div class="values-grid">
+                <div class="value-card mission-card">
+                    <div class="value-header">
+                        <div class="value-icon">🎯</div>
+                        <h3>Nuestra Misión</h3>
+                    </div>
+                    <div class="value-content">
+                        <p>Brindar servicios marítimos especializados de excelencia en la Patagonia Austral, con respuesta inmediata y conocimiento profundo de las condiciones locales, asegurando el éxito de cada proyecto con seguridad, calidad y compromiso ambiental.</p>
+                    </div>
+                </div>
+
+                <div class="value-card vision-card">
+                    <div class="value-header">
+                        <div class="value-icon">🌟</div>
+                        <h3>Nuestra Visión</h3>
+                    </div>
+                    <div class="value-content">
+                        <p>Ser reconocidos como la empresa líder en servicios marítimos especializados para la Patagonia, siendo el socio estratégico preferido por empresas que valoran la agilidad, experiencia local y excelencia operacional en condiciones extremas.</p>
+                    </div>
+                </div>
+
+                <div class="value-card values-card full-width">
+                    <div class="value-header">
+                        <div class="value-icon">⚖️</div>
+                        <h3>Nuestros Valores</h3>
+                    </div>
+                    <div class="value-content">
+                        <div class="values-list">
+                            <div class="value-item">
+                                <div class="value-bullet">🔒</div>
+                                <div class="value-text">
+                                    <strong>Seguridad Primero:</strong> Cero accidentes es nuestro compromiso inquebrantable en cada operación.
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-bullet">⚡</div>
+                                <div class="value-text">
+                                    <strong>Agilidad:</strong> Respuesta inmediata cuando el tiempo es crítico para nuestros clientes.
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-bullet">🎯</div>
+                                <div class="value-text">
+                                    <strong>Excelencia:</strong> Cada proyecto es una oportunidad para superar expectativas.
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-bullet">🌿</div>
+                                <div class="value-text">
+                                    <strong>Responsabilidad Ambiental:</strong> Protegemos las aguas patagónicas que son nuestro hogar de trabajo.
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-bullet">🤝</div>
+                                <div class="value-text">
+                                    <strong>Transparencia:</strong> Comunicación clara y honesta en cada etapa del proyecto.
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-bullet">🏔️</div>
+                                <div class="value-text">
+                                    <strong>Conocimiento Local:</strong> 15 años de experiencia patagónica al servicio de tu proyecto.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="company-certifications">
+                <h3>Respaldos y Certificaciones</h3>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <div class="cert-icon">🛡️</div>
+                        <div class="cert-text">
+                            <strong>Seguros Vigentes</strong><br>
+                            <span>Responsabilidad civil y cobertura completa</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">📜</div>
+                        <div class="cert-text">
+                            <strong>Certificaciones Náuticas</strong><br>
+                            <span>DIRECTEMAR • SOLAS • STCW</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🌊</div>
+                        <div class="cert-text">
+                            <strong>Licencias Operacionales</strong><br>
+                            <span>Autorizaciones para aguas patagónicas</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">⭐</div>
+                        <div class="cert-text">
+                            <strong>Experiencia Comprobada</strong><br>
+                            <span>15+ años sin incidentes mayores</span>
+                        </div>
                     </div>
                 </div>
             </div>
