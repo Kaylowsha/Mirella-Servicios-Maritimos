@@ -1392,5 +1392,38 @@
     </script>
 
     <!-- PARTE 3 TERMINA AQUÍ -->
+<script>
+        // Forzar reproducción del video del logo
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoVideo = document.querySelector('.hero-logo-video');
+            if (logoVideo) {
+                console.log('Video encontrado, intentando reproducir...');
+                logoVideo.muted = true;
+                logoVideo.load(); // Forzar carga
+                
+                // Intentar reproducir
+                const playPromise = logoVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        console.log('Video reproduciéndose correctamente');
+                    }).catch(function(error) {
+                        console.log('Error al reproducir:', error);
+                    });
+                }
+            } else {
+                console.log('Video no encontrado');
+            }
+        });
+
+        // Backup: intentar reproducir cuando el usuario interactúe
+        document.addEventListener('click', function() {
+            const logoVideo = document.querySelector('.hero-logo-video');
+            if (logoVideo && logoVideo.paused) {
+                logoVideo.play();
+            }
+        }, { once: true });
+    </script>
+
 </body>
 </html>
