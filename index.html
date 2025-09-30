@@ -1393,36 +1393,50 @@
 
     <!-- PARTE 3 TERMINA AQUÍ -->
 <script>
-        // Forzar reproducción del video del logo
-        document.addEventListener('DOMContentLoaded', function() {
+        // Intentar reproducir el video del logo
+        function playLogoVideo() {
             const logoVideo = document.querySelector('.hero-logo-video');
             if (logoVideo) {
-                console.log('Video encontrado, intentando reproducir...');
                 logoVideo.muted = true;
-                logoVideo.load(); // Forzar carga
+                logoVideo.setAttribute('muted', '');
+                logoVideo.setAttribute('playsinline', '');
+                logoVideo.load();
                 
-                // Intentar reproducir
                 const playPromise = logoVideo.play();
                 
                 if (playPromise !== undefined) {
                     playPromise.then(function() {
-                        console.log('Video reproduciéndose correctamente');
+                        console.log('✅ Video reproduciéndose correctamente');
                     }).catch(function(error) {
-                        console.log('Error al reproducir:', error);
+                        console.log('⚠️ Autoplay bloqueado, esperando interacción del usuario');
+                        
+                        // Si falla, reproducir con la primera interacción
+                        const events = ['click', 'touchstart', 'scroll'];
+                        events.forEach(function(event) {
+                            document.addEventListener(event, function() {
+                                logoVideo.play().then(function() {
+                                    console.log('✅ Video iniciado después de interacción');
+                                }).catch(function(e) {
+                                    console.log('❌ Error:', e);
+                                });
+                            }, { once: true });
+                        });
                     });
                 }
-            } else {
-                console.log('Video no encontrado');
             }
-        });
+        }
 
-        // Backup: intentar reproducir cuando el usuario interactúe
-        document.addEventListener('click', function() {
-            const logoVideo = document.querySelector('.hero-logo-video');
-            if (logoVideo && logoVideo.paused) {
-                logoVideo.play();
-            }
-        }, { once: true });
+        // Intentar reproducir cuando cargue la página
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', playLogoVideo);
+        } else {
+            playLogoVideo();
+        }
+
+        // También intentar después de cargar todos los recursos
+        window.addEventListener('load', function() {
+            setTimeout(playLogoVideo, 100);
+        });
     </script>
 
 </body>
